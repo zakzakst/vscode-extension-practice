@@ -29,6 +29,10 @@
       {
         "command": "extension-practice.openMyFolder",
         "title": "マイフォルダを開く"
+      },
+      {
+        "command": "extension-practice.clicked",
+        "title": "サイドパネルクリック"
       }
     ],
     "configuration": {
@@ -40,6 +44,24 @@
           "description": "マイフォルダのリスト"
         }
       }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "myFolders",
+          "title": "My Folder",
+          "icon": "media/icon-my-folders.svg"
+        }
+      ]
+    },
+    "views": {
+      "myFolders": [
+        {
+          "id": "myFoldersView",
+          "name": "myFolders",
+          "icon": "media/icon-my-folders.svg"
+        }
+      ]
     }
   },
   "scripts": {
