@@ -1,5 +1,6 @@
 {
   "name": "extension-practice",
+  "publisher": "zakzakst",
   "displayName": "extension-practice",
   "description": "extension-practice",
   "version": "0.0.1",
@@ -20,6 +21,10 @@
       {
         "command": "extension-practice.countSelectedText",
         "title": "Count Selected Text"
+      },
+      {
+        "command": "extension-practice.toUppercase",
+        "title": "Convert Selected Text To Uppercase"
       }
     ]
   },
@@ -34,7 +39,8 @@
     "package-web": "npm run check-types && npm run lint && node esbuild.js --production",
     "check-types": "tsc --noEmit",
     "lint": "eslint src",
-    "run-in-browser": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ."
+    "run-in-browser": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. .",
+    "vsce-package": "vsce package"
   },
   "devDependencies": {
     "@types/vscode": "^1.120.0",
