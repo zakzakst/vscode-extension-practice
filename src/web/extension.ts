@@ -1,27 +1,29 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
+  console.log('Congratulations, your extension "extension-practice" is now active in the web extension host!');
+  const disposable = vscode.commands.registerCommand('extension-practice.helloWorld', () => {
+    vscode.window.showInformationMessage('Hello World from extension-practice in a web extension host!');
+  });
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "extension-practice" is now active in the web extension host!');
+  const countDisposable = vscode.commands.registerCommand('extension-practice.countSelectedText', () => {
+    // vscode.window.showInformationMessage('文字数を数えます');
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+      vscode.window.showWarningMessage('エディタが開かれていません');
+      return ;
+    }
+    const selection = editor.selection;
+    const selectedText = editor.document.getText(selection);
+    if (selectedText.length === 0) {
+      vscode.window.showWarningMessage('文字数を選択してください');
+    }
+    vscode.window.showInformationMessage(`選択文字数：${selectedText.length}`);
+  });
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('extension-practice.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from extension-practice in a web extension host!');
-	});
-
-	context.subscriptions.push(disposable);
+  context.subscriptions.push(disposable);
+  context.subscriptions.push(countDisposable);
 }
 
-// This method is called when your extension is deactivated
+
 export function deactivate() {}
