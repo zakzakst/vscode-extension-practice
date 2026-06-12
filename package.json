@@ -25,8 +25,22 @@
       {
         "command": "extension-practice.toUppercase",
         "title": "Convert Selected Text To Uppercase"
+      },
+      {
+        "command": "extension-practice.openMyFolder",
+        "title": "マイフォルダを開く"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "マイフォルダ",
+      "properties": {
+        "extension-practice.myFolders": {
+          "type": "array",
+          "default": [],
+          "description": "マイフォルダのリスト"
+        }
+      }
+    }
   },
   "scripts": {
     "test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/extensionTests.js",
