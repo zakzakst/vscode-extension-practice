@@ -1,4 +1,6 @@
 import * as vscode from 'vscode';
+import { openMyFolderDisposables } from '../disposables/openMyFolderDisposables';
+import { OpenMyFolderProvider } from '../providers/OpenMyFolderProvider';
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "extension-practice" is now active in the web extension host!');
@@ -42,9 +44,26 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.window.showInformationMessage('大文字に変換しました');
   });
 
+  // const openMyFolderDisposables = vscode.commands.registerCommand('extension-practice.openMyFolder', () => {
+  //   vscode.window.showInformationMessage('openFolderDisposables');
+  // });
+
+  const clickedDisposable = vscode.commands.registerCommand('extension-practice.clicked', (name: string) => {
+    vscode.window.showInformationMessage(`${name}がクリックされました`);
+  });
+
+  const provider = new OpenMyFolderProvider();
+
+  vscode.window.registerTreeDataProvider(
+    'myFoldersView',
+    provider
+  );
+
   context.subscriptions.push(disposable);
   context.subscriptions.push(countDisposable);
   context.subscriptions.push(uppercaseDisposable);
+  context.subscriptions.push(openMyFolderDisposables);
+  context.subscriptions.push(clickedDisposable);
 }
 
 
