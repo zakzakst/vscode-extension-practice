@@ -1785,7 +1785,21 @@ function activate(context) {
   const disposable = vscode.commands.registerCommand("extension-practice.helloWorld", () => {
     vscode.window.showInformationMessage("Hello World from extension-practice in a web extension host!");
   });
+  const countDisposable = vscode.commands.registerCommand("extension-practice.countSelectedText", () => {
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+      vscode.window.showWarningMessage("\u30A8\u30C7\u30A3\u30BF\u304C\u958B\u304B\u308C\u3066\u3044\u307E\u305B\u3093");
+      return;
+    }
+    const selection = editor.selection;
+    const selectedText = editor.document.getText(selection);
+    if (selectedText.length === 0) {
+      vscode.window.showWarningMessage("\u6587\u5B57\u6570\u3092\u9078\u629E\u3057\u3066\u304F\u3060\u3055\u3044");
+    }
+    vscode.window.showInformationMessage(`\u9078\u629E\u6587\u5B57\u6570\uFF1A${selectedText.length}`);
+  });
   context.subscriptions.push(disposable);
+  context.subscriptions.push(countDisposable);
 }
 function deactivate() {
 }
