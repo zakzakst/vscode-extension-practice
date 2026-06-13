@@ -33,7 +33,7 @@ const myFolderItems: MyFolderItem[] = [
       },
     ],
   },
-]
+];
 
 export class OpenMyFolderProvider implements vscode.TreeDataProvider<MyFolderItem> {
   getTreeItem(element: MyFolderItem): vscode.TreeItem {
