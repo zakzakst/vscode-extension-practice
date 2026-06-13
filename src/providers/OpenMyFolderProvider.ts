@@ -1,25 +1,66 @@
 import * as vscode from 'vscode';
 
-export class OpenMyFolderProvider implements vscode.TreeDataProvider<string> {
-  getTreeItem(element: string): vscode.TreeItem {
-    const item = new vscode.TreeItem(element);
+type MyFolderItem = {
+  label: string;
+  path?: string;
+  children?: MyFolderItem[];
+};
 
-    item.command = {
-      command: 'extension-practice.clicked',
-      title: 'サイドパネルクリック',
-      arguments: [element]
-    };
+const myFolderItems: MyFolderItem[] = [
+  {
+    label: 'SITE A',
+    children: [
+      {
+        label: 'Frontend',
+        path: 'path/to/frontend',
+      },
+      {
+        label: 'Backend',
+        path: 'path/to/backend',
+      },
+    ],
+  },
+  {
+    label: 'SITE B',
+    children: [
+      {
+        label: 'Frontend',
+        path: 'path/to/frontend',
+      },
+      {
+        label: 'Backend',
+        path: 'path/to/backend',
+      },
+    ],
+  },
+]
 
-    item.iconPath = new vscode.ThemeIcon('folder');
+export class OpenMyFolderProvider implements vscode.TreeDataProvider<MyFolderItem> {
+  getTreeItem(element: MyFolderItem): vscode.TreeItem {
+    const collapsibleState = element.children
+      ? vscode.TreeItemCollapsibleState.Expanded
+      : vscode.TreeItemCollapsibleState.None;
+
+    const item = new vscode.TreeItem(element.label, collapsibleState);
+
+    if (!element.children) {
+      item.command = {
+        command: 'extension-practice.clicked',
+        title: 'サイドパネルクリック',
+        arguments: [element]
+      };
+      item.iconPath = new vscode.ThemeIcon('folder');
+      item.contextValue = 'folder';
+    }
 
     return item;
   }
 
-  getChildren(): string[] {
-    return [
-      'Frontend',
-      'Backend',
-      'Chrome Extension'
-    ];
+  getChildren(element?: MyFolderItem): MyFolderItem[] {
+    if (!element) {
+      return myFolderItems;
+    }
+
+    return element.children ?? [];
   }
 }

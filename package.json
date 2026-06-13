@@ -62,6 +62,14 @@
           "icon": "media/icon-my-folders.svg"
         }
       ]
+    },
+    "menus": {
+      "view/item/context": [
+        {
+          "command": "extension-practice.clicked",
+          "when": "viewItem == folder"
+        }
+      ]
     }
   },
   "scripts": {
