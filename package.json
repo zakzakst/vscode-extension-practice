@@ -33,6 +33,14 @@
       {
         "command": "extension-practice.clicked",
         "title": "サイドパネルクリック"
+      },
+      {
+        "command": "extension-practice.openGoogle",
+        "title": "Open Google"
+      },
+      {
+        "command": "extension-practice.currentFolder",
+        "title": "現在のフォルダパスを表示"
       }
     ],
     "configuration": {

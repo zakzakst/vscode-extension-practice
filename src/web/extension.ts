@@ -52,18 +52,35 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.window.showInformationMessage(`${myFolder.label}がクリックされました${myFolder.path}`);
   });
 
-  const provider = new OpenMyFolderProvider();
+  const openGoogleDisposable = vscode.commands.registerCommand('extension-practice.openGoogle', async () => {
+    await vscode.env.openExternal(vscode.Uri.parse('https://www.google.com'));
+  });
 
-  vscode.window.registerTreeDataProvider(
-    'myFoldersView',
-    provider
-  );
+  const showCurrentFolder = vscode.commands.registerCommand('extension-practice.currentFolder', () => {
+    const folders = vscode.workspace.workspaceFolders;
+    if (!folders || folders.length === 0) {
+      vscode.window.showWarningMessage('フォルダが開かれていません');
+      return;
+    }
+    const rootPath = folders[0].uri.fsPath;
+
+    vscode.window.showInformationMessage(rootPath);
+  });
 
   context.subscriptions.push(disposable);
   context.subscriptions.push(countDisposable);
   context.subscriptions.push(uppercaseDisposable);
   context.subscriptions.push(openMyFolderDisposables);
   context.subscriptions.push(clickedDisposable);
+  context.subscriptions.push(openGoogleDisposable);
+  context.subscriptions.push(showCurrentFolder);
+
+  const provider = new OpenMyFolderProvider();
+
+  vscode.window.registerTreeDataProvider(
+    'myFoldersView',
+    provider
+  );
 }
 
 
