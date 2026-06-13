@@ -48,8 +48,8 @@ export function activate(context: vscode.ExtensionContext) {
   //   vscode.window.showInformationMessage('openFolderDisposables');
   // });
 
-  const clickedDisposable = vscode.commands.registerCommand('extension-practice.clicked', (name: string) => {
-    vscode.window.showInformationMessage(`${name}がクリックされました`);
+  const clickedDisposable = vscode.commands.registerCommand('extension-practice.clicked', (myFolder: { label: string; path: string;}) => {
+    vscode.window.showInformationMessage(`${myFolder.label}がクリックされました${myFolder.path}`);
   });
 
   const provider = new OpenMyFolderProvider();
