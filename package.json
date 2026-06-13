@@ -92,7 +92,7 @@
     "check-types": "tsc --noEmit",
     "lint": "eslint src",
     "run-in-browser": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. .",
-    "vsce-package": "vsce package --out download/extension.vsix"
+    "vsce-package": "vsce package --out downloads/extension.vsix"
   },
   "devDependencies": {
     "@types/vscode": "^1.120.0",
