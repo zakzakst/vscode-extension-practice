@@ -14,9 +14,6 @@ or
 
 ## TODO
 
-- エイリアス
-- 保存時のlint
-- prettier
 - typeフォルダ
 
 ## やりたいこと

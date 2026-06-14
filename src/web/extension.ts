@@ -1,5 +1,5 @@
-import { openMyFolderDisposables } from "../disposables/openMyFolderDisposables";
-import { OpenMyFolderProvider } from "../providers/OpenMyFolderProvider";
+import { openMyFolderDisposables } from "@/disposables/openMyFolderDisposables";
+import { OpenMyFolderProvider } from "@/providers/OpenMyFolderProvider";
 import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
