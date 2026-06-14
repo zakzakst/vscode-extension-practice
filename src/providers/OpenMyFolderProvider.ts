@@ -1,4 +1,4 @@
-import * as vscode from 'vscode';
+import * as vscode from "vscode";
 
 type MyFolderItem = {
   label: string;
@@ -8,28 +8,28 @@ type MyFolderItem = {
 
 const myFolderItems: MyFolderItem[] = [
   {
-    label: 'SITE A',
+    label: "SITE A",
     children: [
       {
-        label: 'Frontend',
-        path: 'path/to/frontend',
+        label: "Frontend",
+        path: "path/to/frontend",
       },
       {
-        label: 'Backend',
-        path: 'path/to/backend',
+        label: "Backend",
+        path: "path/to/backend",
       },
     ],
   },
   {
-    label: 'SITE B',
+    label: "SITE B",
     children: [
       {
-        label: 'Frontend',
-        path: 'path/to/frontend',
+        label: "Frontend",
+        path: "path/to/frontend",
       },
       {
-        label: 'Backend',
-        path: 'path/to/backend',
+        label: "Backend",
+        path: "path/to/backend",
       },
     ],
   },
@@ -45,12 +45,12 @@ export class OpenMyFolderProvider implements vscode.TreeDataProvider<MyFolderIte
 
     if (!element.children) {
       item.command = {
-        command: 'extension-practice.clicked',
-        title: 'サイドパネルクリック',
-        arguments: [element]
+        command: "extension-practice.clicked",
+        title: "サイドパネルクリック",
+        arguments: [element],
       };
-      item.iconPath = new vscode.ThemeIcon('folder');
-      item.contextValue = 'folder';
+      item.iconPath = new vscode.ThemeIcon("folder");
+      item.contextValue = "folder";
     }
 
     return item;
