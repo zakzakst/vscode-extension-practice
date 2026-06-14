@@ -14,8 +14,6 @@ or
 
 ## TODO
 
-- typeフォルダ
-
 ## やりたいこと
 
 - MyRepositories
